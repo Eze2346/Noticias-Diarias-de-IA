@@ -1,39 +1,43 @@
-/* Estilos para un diseño profesional */
+/* Estilos generales */
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #10182f; /* Azul oscuro como fondo */
-  color: #ffffff; /* Texto blanco para contraste */
+  font-family: 'Roboto', sans-serif;
+  background-color: #10182f;
+  color: #ffffff;
   max-width: 1200px;
   margin: 0 auto;
+  line-height: 1.6;
 }
 
 /* Cabecera */
 header {
   text-align: center;
-  background-color: #1a2354; /* Azul más intenso */
-  padding: 20px 0;
-  border-bottom: 2px solid #00aaff; /* Línea azul brillante */
+  padding: 40px 0;
+  background: linear-gradient(135deg, #1a2354, #10182f);
+  color: #00aaff;
 }
 
 header h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3em;
   margin: 0;
-  font-size: 2.5em;
-  color: #00aaff; /* Azul brillante para el título principal */
 }
 
 header h2 {
-  margin: 5px 0 0 0;
-  font-weight: normal;
-  color: #b0c7f1; /* Azul claro para el subtítulo */
+  font-size: 1.2em;
+  font-weight: 300;
+  color: #b0c7f1;
 }
 
 /* Menú de navegación */
 nav {
-  background-color: #10182f;
-  padding: 10px 0;
+  background-color: #141d42;
   text-align: center;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 nav a {
@@ -41,79 +45,66 @@ nav a {
   margin: 0 15px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 1.1em;
 }
 
 nav a:hover {
+  color: #ffffff;
   text-decoration: underline;
 }
 
 /* Sección principal */
 main {
   padding: 20px;
-  background-color: #141d42; /* Azul intermedio */
+  background-color: #141d42;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
-/* Títulos de sección (fechas) */
-.date-section {
-  margin: 30px 0;
-}
-
+/* Títulos de sección */
 .date-title {
   background-color: #1a2354;
-  padding: 10px;
-  font-size: 1.4em;
-  font-weight: bold;
   color: #00aaff;
-  border-left: 6px solid #00aaff;
+  padding: 15px;
+  font-size: 1.5em;
+  margin-bottom: 20px;
   border-radius: 5px;
+  border-left: 6px solid #00aaff;
 }
 
 /* Noticias */
 .news-item {
-  border-bottom: 1px solid #2e375d;
+  background-color: #1a2354;
+  padding: 20px;
   margin-bottom: 20px;
-  padding-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .news-headline {
-  font-size: 1.5em;
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8em;
+  margin-bottom: 10px;
   color: #ffffff;
-  margin: 10px 0;
 }
 
 .news-summary {
   font-style: italic;
-  margin: 5px 0;
   color: #b0c7f1;
 }
 
 .news-detail {
-  margin: 10px 0;
-  line-height: 1.6;
   color: #d4e1ff;
-}
-
-.news-date {
-  font-size: 0.9em;
-  color: #b0c7f1;
-}
-
-figure {
-  margin: 10px 0;
 }
 
 figure img {
   max-width: 100%;
-  height: auto;
-  display: block;
   border-radius: 10px;
+  margin-top: 10px;
 }
 
-/* Botones */
 button {
+  margin-top: 10px;
   background-color: #00aaff;
   color: #ffffff;
   border: none;
@@ -124,30 +115,30 @@ button {
 }
 
 button:hover {
-  background-color: #007bb5; /* Azul más oscuro para hover */
+  background-color: #007bb5;
 }
 
 /* Pie de página */
 footer {
   text-align: center;
   padding: 10px 0;
-  font-size: 0.9em;
-  color: #b0c7f1;
-  border-top: 1px solid #2e375d;
   background-color: #1a2354;
+  color: #b0c7f1;
+  font-size: 0.9em;
+  border-top: 1px solid #2e375d;
 }
 
-/* Adaptaciones para dispositivos móviles */
+/* Adaptaciones móviles */
 @media (max-width: 768px) {
-  body {
-      max-width: 100%;
+  header h1 {
+    font-size: 2em;
   }
 
-  header h1 {
-      font-size: 2em;
+  nav a {
+    font-size: 0.9em;
   }
 
   .news-headline {
-      font-size: 1.2em;
+    font-size: 1.2em;
   }
 }
