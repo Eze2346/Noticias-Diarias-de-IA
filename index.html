@@ -9,13 +9,57 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
   <!-- Vinculación del archivo CSS -->
   <link rel="stylesheet" href="noticias.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .calendar-container {
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      max-width: 300px;
+    }
+    .calendar-container h3 {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+    }
+    #calendar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+    }
+    .day {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+    }
+    .day.past {
+      background-color: #007bff;
+      color: white;
+    }
+    .day.today {
+      background-color: #28a745;
+      color: white;
+    }
+    .day:hover {
+      background-color: #0056b3;
+      color: white;
+    }
+  </style>
 </head>
 <body>
 
   <!-- Encabezado -->
   <header>
     <div class="header-logo">
-      <img src="assets/logo-r3-studio.png" alt="Logo de R3 Studio" style="width:120px; height:auto;">
+      <img src="assets/logo-r3-studio.png" alt="R3 Studio" style="width:120px; height:auto;">
     </div>
     <h1>Noticias Diarias de IA</h1>
     <h2>Diario Tecnológico</h2>
@@ -23,33 +67,23 @@
 
   <!-- Barra de navegación -->
   <nav>
-    <a href="#edicion-06022025">Edición 06/02/2025</a>
-    <a href="#edicion-07022025">Edición 07/02/2025</a>
     <a href="#contacto">Contacto</a>
   </nav>
 
   <!-- Contenedor principal -->
   <main>
-    <!-- Sección para la edición del 06/02/2025 -->
-    <section id="edicion-06022025" class="date-section">
-      <div class="date-title">Edición del 06/02/2025</div>
+    <!-- Calendario -->
+    <section class="calendar-container">
+      <h3>Selecciona una Fecha</h3>
+      <div id="calendar"></div>
+    </section>
 
-      <!-- Noticias de la edición -->
-      <article class="news-item">
-        <h3 class="news-headline">Avances en IA conversacional</h3>
-        <p class="news-summary">Grandes empresas tecnológicas anuncian nuevos modelos más precisos.</p>
-        <p class="news-detail">
-          Nuevas plataformas superan en capacidad a versiones anteriores, con mejor comunicación y entendimiento contextual.
-        </p>
-        <p class="news-date">Publicado el: 06/02/2025</p>
-        <figure>
-          <img src="Imagenes/IAconversasional.JPG" alt="IA conversacional">
-          <figcaption>Interacción avanzada con un asistente de IA</figcaption>
-        </figure>
-        <button>Leer más</button>
-      </article>
-
-      <!-- Más noticias aquí -->
+    <!-- Sección de noticias dinámicas -->
+    <section id="news-section">
+      <div class="date-title">Noticias del <span id="selected-date">06/02/2025</span></div>
+      <div id="news-content">
+        <p>Por favor, selecciona una fecha en el calendario para cargar las noticias.</p>
+      </div>
     </section>
   </main>
 
@@ -59,5 +93,52 @@
     <p>Contacto: <a href="mailto:info@noticiasdiariasia.com">info@noticiasdiariasia.com</a></p>
   </footer>
 
+  <script>
+    // Generar el calendario dinámico
+    function generateCalendar() {
+      const calendar = document.getElementById('calendar');
+      const today = new Date(2025, 1, 8); // Fijamos el día presente al 8 de febrero de 2025
+      const month = today.getMonth();
+      const year = today.getFullYear();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayElement = document.createElement('div');
+        dayElement.classList.add('day');
+        dayElement.textContent = day;
+
+        const currentDate = new Date(year, month, day);
+
+        if (currentDate < today) {
+          dayElement.classList.add('past');
+        } else if (currentDate.toDateString() === today.toDateString()) {
+          dayElement.classList.add('today');
+        }
+
+        dayElement.addEventListener('click', () => loadNews(day, month + 1, year));
+        calendar.appendChild(dayElement);
+      }
+    }
+
+    // Función para cargar noticias por fecha
+    function loadNews(day, month, year) {
+      const selectedDate = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+      document.getElementById('selected-date').textContent = selectedDate;
+      
+      // Aquí simulas cargar noticias dinámicamente. Puedes reemplazar esto por una API o datos reales.
+      const newsContent = document.getElementById('news-content');
+      newsContent.innerHTML = `
+        <article class="news-item">
+          <h3 class="news-headline">Noticia del ${selectedDate}</h3>
+          <p class="news-summary">Resumen de las noticias para esta fecha.</p>
+          <p class="news-detail">Detalles de las noticias cargadas dinámicamente para el día ${selectedDate}.</p>
+          <p class="news-date">Publicado el: ${selectedDate}</p>
+        </article>
+      `;
+    }
+
+    // Inicializar el calendario
+    generateCalendar();
+  </script>
 </body>
 </html>
